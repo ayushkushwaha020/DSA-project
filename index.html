@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <title>Student Record Management | DSA Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">SR</div><div><strong>CampusDesk</strong><span>STUDENT RECORDS</span></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="overview"><span>▦</span> Overview</button>
+      <button class="nav-item" data-view="students"><span>♙</span> Students</button>
+      <button class="nav-item" data-view="requests"><span>⇄</span> Service queue <b id="queueNavCount">0</b></button>
+      <div class="side-bottom"><div class="side-label">DATA STRUCTURES</div><div class="ds-pill"><i>↗</i><span>Linked List</span><small>Records</small></div><div class="ds-pill"><i>↶</i><span>Stack</span><small>Undo</small></div><div class="ds-pill"><i>⇥</i><span>Queue</span><small>Requests</small></div><div class="ds-pill"><i>⌘</i><span>Merge Sort</span><small>Sorting</small></div></div>
+      <div class="sidebar-foot"><span class="status-dot"></span> DSA mini project <small>v1.0</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">ACADEMIC MANAGEMENT</div><h1 id="pageTitle">Overview</h1></div><div class="top-actions"><span class="today" id="todayLabel"></span><div class="avatar">A</div></div></header>
+      <section id="overviewView">
+        <div class="welcome"><div><div class="eyebrow light">STUDENT INFORMATION SYSTEM</div><h2>Manage records.<br><em>Make learning count.</em></h2><p>A simple workspace powered by core Data Structures & Algorithms.</p><button class="primary-btn" id="heroAdd">＋ Add new student</button></div><div class="welcome-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-card"><div class="art-icon">▤</div><strong>DSA in action</strong><span>Organise · Search · Sort</span><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="float-tag">O(n log n) <small>Merge sort</small></div></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total students</span><i class="stat-icon blue">♙</i></div><strong id="totalStat">0</strong><small><span class="trend">●</span> Records in linked list</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Average marks</span><i class="stat-icon purple">％</i></div><strong id="averageStat">0.0<small class="unit">/ 100</small></strong><small>Across all students</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Pass percentage</span><i class="stat-icon green">✓</i></div><strong id="passStat">0%</strong><small>Passing score: 40 and above</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Pending requests</span><i class="stat-icon orange">⇄</i></div><strong id="pendingStat">0</strong><small>FIFO service queue</small></article>
+        </div>
+        <div class="content-grid"><section class="panel"><div class="panel-head"><div><h3>Recent students</h3><p>Latest records added to the system</p></div><button class="text-btn" data-go="students">View all →</button></div><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>ROLL NO.</th><th>COURSE</th><th>MARKS</th><th>STATUS</th></tr></thead><tbody id="recentRows"></tbody></table></div><div id="recentEmpty" class="empty-state">No student records yet. Add your first student to get started.</div></section><section class="panel dsa-panel"><div class="panel-head"><div><h3>DSA toolkit</h3><p>Concepts used in this project</p></div><span class="live-tag">LIVE</span></div><div class="tool-row"><span class="tool-symbol blue">↗</span><div><b>Singly Linked List</b><small>Dynamic student storage</small></div><span class="complexity">O(n)</span></div><div class="tool-row"><span class="tool-symbol purple">↶</span><div><b>Stack</b><small>Undo recent changes · LIFO</small></div><span class="complexity">O(1)*</span></div><div class="tool-row"><span class="tool-symbol orange">⇥</span><div><b>Circular Queue</b><small>Service requests · FIFO</small></div><span class="complexity">O(1)</span></div><div class="tool-row"><span class="tool-symbol green">⌘</span><div><b>Merge Sort</b><small>Sort records efficiently</small></div><span class="complexity">O(n log n)</span></div><p class="footnote">*Stack push/pop is O(1); undoing a linked-list change may require traversal.</p></section></div>
+      </section>
+      <section id="studentsView" class="hidden">
+        <div class="toolbar"><div class="searchbox"><span>⌕</span><input id="searchInput" placeholder="Search by name or roll number..."></div><select id="sortSelect" aria-label="Sort students"><option value="none">Sort: Default order</option><option value="name">Name: A to Z</option><option value="marks">Marks: High to low</option></select><button class="secondary-btn" id="undoBtn">↶ Undo <span id="undoCount">0</span></button><button class="primary-btn" id="addBtn">＋ Add student</button></div>
+        <section class="panel"><div class="panel-head"><div><h3>Student directory</h3><p id="studentCountLabel">All student records</p></div><span class="live-tag">LINKED LIST</span></div><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>ROLL NO.</th><th>COURSE</th><th>MARKS</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="studentRows"></tbody></table></div><div id="studentEmpty" class="empty-state">No matching students. Add a record or change your search.</div></section>
+      </section>
+      <section id="requestsView" class="hidden">
+        <div class="toolbar"><div><h2 class="section-title">Service requests</h2><p class="muted">First in, first out — handled by a circular queue.</p></div><button class="primary-btn" id="addRequestBtn">＋ New request</button></div>
+        <div class="queue-layout"><section class="panel"><div class="panel-head"><div><h3>Pending queue</h3><p>Next request is processed first</p></div><span class="live-tag">FIFO</span></div><div id="queueList" class="queue-list"></div><div id="queueEmpty" class="empty-state">Your queue is clear. Add a student service request.</div><div class="panel-actions"><button class="secondary-btn" id="processRequestBtn">Process next request →</button></div></section><section class="panel queue-info"><h3>How the queue works</h3><div class="queue-diagram"><div>FRONT <b id="frontLabel">—</b></div><div class="queue-track"><span></span><span></span><span></span><span></span></div><div>REAR <b id="rearLabel">—</b></div></div><p>Requests are inserted at the rear and removed from the front. Circular indexing reuses empty array positions.</p><div class="complexity-box"><b>Enqueue / Dequeue</b><strong>O(1)</strong></div></section></div>
+      </section>
+      <footer>Student Record Management System <span>Built to demonstrate Data Structures & Algorithms in C concepts</span></footer>
+    </main>
+  </div>
+  <dialog id="studentDialog"><form id="studentForm" method="dialog"><div class="dialog-head"><div><div class="eyebrow">STUDENT DIRECTORY</div><h2 id="dialogTitle">Add student</h2></div><button type="button" class="close-btn" id="closeStudentDialog">×</button></div><input type="hidden" id="editOriginalRoll"><label>Roll number<input id="rollInput" type="number" min="1" required placeholder="e.g. 102"></label><label>Student name<input id="nameInput" required maxlength="60" placeholder="Full name"></label><label>Course<input id="courseInput" required maxlength="40" placeholder="e.g. BCA AI & ML"></label><label>Marks (0–100)<input id="marksInput" type="number" min="0" max="100" step="0.01" required placeholder="e.g. 86"></label><div class="form-error" id="formError"></div><div class="dialog-actions"><button type="button" class="secondary-btn" id="cancelStudent">Cancel</button><button type="submit" class="primary-btn">Save record</button></div></form></dialog>
+  <dialog id="requestDialog"><form id="requestForm" method="dialog"><div class="dialog-head"><div><div class="eyebrow">SERVICE DESK</div><h2>New service request</h2></div><button type="button" class="close-btn" id="closeRequestDialog">×</button></div><label>Student roll number<input id="requestRoll" type="number" min="1" required placeholder="e.g. 102"></label><label>Request description<input id="requestDescription" maxlength="100" required placeholder="e.g. Marks correction"></label><div class="form-error" id="requestError"></div><div class="dialog-actions"><button type="button" class="secondary-btn" id="cancelRequest">Cancel</button><button type="submit" class="primary-btn">Add to queue</button></div></form></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body></html>
