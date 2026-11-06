@@ -3,7 +3,10 @@
 A student-record application demonstrating core Data Structures and Algorithms.
 
 ## Live web application
-This repository contains a static browser-based dashboard suitable for Vercel deployment. Open `index.html` locally, or deploy the repository to Vercel.
+
+**Render deployment:** https://dsa-project-98gw.onrender.com
+
+The application is hosted on Render and connected to this repository's `main` branch. New commits to `main` are configured to trigger automatic deployments.
 
 ## DSA concepts
 | Concept | Use | Complexity |
@@ -25,11 +28,13 @@ This repository contains a static browser-based dashboard suitable for Vercel de
 ## Run locally
 No build step or package installation is required. Open `index.html` in a browser.
 
-## Deploy on Vercel
-1. Import this GitHub repository into Vercel.
-2. Select **Other** as the framework preset if asked.
-3. Leave the build command and output directory empty/default (the site is static at the repository root).
-4. Deploy.
+## Render deployment
+This is a static site deployed from the repository root.
+- **Repository:** https://github.com/ayushkushwaha020/DSA-project
+- **Branch:** `main`
+- **Build command:** none
+- **Publish directory:** `.`
+- **Auto-deploy:** enabled
 
 ## Original C console project
 The `student_record_system.c` file is the standalone C implementation for compiling and running in a terminal:
